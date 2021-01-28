@@ -24,9 +24,40 @@ SmartWeaveJS started allowing tags since version 0.4.23, make sure to at least h
     "Service": "CommunityXYZ",
     "Community-ID": "mzvUgNc8YFk0w5K5H7c8pyT-FC5Y_ba0r7_8766Kx74",
     "Action": "transfer",
-    "Message": "Transfer to $addy of $value.",
+    "Message": "Transfer to $addy of $balance.",
     "Type": "ArweaveActivity"
 }
+```
+
+#### Example of a transaction
+```js
+const { interactWrite } from 'smartweave';
+const Arweave from 'arweave';
+
+const arweave = Arweave.init({});
+const wallet = '...';
+
+const communityId = 'mzvUgNc8YFk0w5K5H7c8pyT-FC5Y_ba0r7_8766Kx74';
+const addy = 'Bpr...';
+const balance = 1000;
+
+(async () => {
+  const input = {
+    function: 'transfer',
+    target: addy,
+    qty: balance
+  };
+
+  const tags = [
+    {name: 'Service', value: 'CommunityXYZ'},
+    {name: 'Community-ID', value: communityId},
+    {name: 'Action', value: 'transfer'},
+    {name: 'Message', value: `Transfer to ${addy} of ${balance}.`},
+    {name: 'Type', value: 'ArweaveActivity'}
+  ];
+
+  await interactWrite(arweave, wallet, communityId, input, tags);
+})();
 ```
 
 ### Join us!
