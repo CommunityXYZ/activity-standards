@@ -6,9 +6,9 @@ These activities are shown on every Community dashboard and on the user profiles
 
 Viewblock has started to use the same standards to show the different actions going on under wallet transactions.
 
-`activity-standards` are simple tags that are added to a SmartWeave actions, it's extremely simple to implement. It helps keep a clean and with all the required details in a single transaction.
+`activity-standards` are simple tags that are added to a transaction, or SmartWeave actions. It's extremely simple to implement. It helps keep a clean and with all the required details in a single transaction.
 
-SmartWeaveJS started allowing tags since version 0.4.23, make sure to at least have this version before trying to use the tags.
+SmartWeaveJS started allowing tags since version 0.4.23, if you will be using SmartWeave, make sure to at least have this version before trying to use the tags.
 
 ### Required tags
 - **Service** - (PascalCase) Your project name to identify the service.
@@ -29,7 +29,28 @@ SmartWeaveJS started allowing tags since version 0.4.23, make sure to at least h
 }
 ```
 
-#### Example of a transaction
+#### Example of an Arweave transaction
+```js
+const Arweave from 'arweave';
+
+const arweave = Arweave.init({});
+const wallet = '...';
+const communityId = 'mzvUgNc8YFk0w5K5H7c8pyT-FC5Y_ba0r7_8766Kx74';
+
+(async () => {
+  const tx = await arweave.createTransaction({...}, wallet);
+  tx.addTag('Service', 'Community.XYZ');
+  tx.addTag('Community-ID', communityId);
+  tx.addTag('Action', 'createOpportunity');
+  tx.addTag('Message', 'Created new opportunity');
+  tx.addTag('Type', 'ArweaveActivity');
+
+  await arweave.transactions.sign(tx, wallet);
+  await arweave.transactions.post(tx);
+})();
+```
+
+#### Example of a SmartWeave transaction
 ```js
 const { interactWrite } from 'smartweave';
 const Arweave from 'arweave';
