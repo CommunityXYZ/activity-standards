@@ -30,5 +30,5 @@ SmartWeaveJS started allowing tags since version 0.4.23, make sure to at least h
 ```
 
 ### Join us!
-If you have any questions, suggestions or just want to hang out with the community of BUILDERs, [join us on Discord](https://community.xyz/chat)!
+If you have any questions, suggestions or just want to hang out with the community of BUIDLERs, [join us on Discord](https://community.xyz/chat)!
 
